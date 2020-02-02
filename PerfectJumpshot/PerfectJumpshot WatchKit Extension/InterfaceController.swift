@@ -11,9 +11,9 @@ import Foundation
 import CoreMotion
 
 struct AccelerometerReading {
-    var x: Double
-    var y: Double
-    var z: Double
+    var posx: Double
+    var posy: Double
+    var posz: Double
 }
 
 class InterfaceController: WKInterfaceController {
@@ -36,7 +36,7 @@ class InterfaceController: WKInterfaceController {
     
     // Class Variables
     let motionManager = CMMotionManager()
-    var prefAccelReading = AccelerometerReading(x: 0.0, y: 0.0, z: 0.0)
+    var prefAccelReading = AccelerometerReading(posx: 0.0, posy: 0.0, posz: 0.0)
     var accelReadings: [AccelerometerReading] = []
     
     // Outlets
@@ -55,7 +55,7 @@ class InterfaceController: WKInterfaceController {
                 let zVal: Double = data?.acceleration.z ?? 0.0
                 
                 //Create new reading and add to the list
-                let newReading = AccelerometerReading(x: xVal, y: yVal, z: zVal)
+                let newReading = AccelerometerReading(posx: xVal, posy: yVal, posz: zVal)
                 self.accelReadings.append(newReading)
             }
         }
@@ -73,21 +73,21 @@ class InterfaceController: WKInterfaceController {
             var maxY: Double = 0.0
             var maxZ: Double = 0.0
             for reading in accelReadings {
-                if reading.x > maxX {
-                    maxX = reading.x
+                if reading.posx > maxX {
+                    maxX = reading.posx
                 }
-                if reading.y > maxY {
-                    maxY = reading.y
+                if reading.posy > maxY {
+                    maxY = reading.posy
                 }
-                if reading.z > maxZ {
-                    maxZ = reading.z
+                if reading.posz > maxZ {
+                    maxZ = reading.posz
                 }
             }
             
             //Set the users preffered values
-            prefAccelReading.x = maxX
-            prefAccelReading.y = maxY
-            prefAccelReading.z = maxZ
+            prefAccelReading.posx = maxX
+            prefAccelReading.posy = maxY
+            prefAccelReading.posz = maxZ
             
             print(prefAccelReading)
         }
