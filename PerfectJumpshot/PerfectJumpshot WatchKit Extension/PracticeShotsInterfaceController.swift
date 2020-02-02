@@ -81,10 +81,7 @@ class PracticeShotsInterfaceController: WKInterfaceController {
                 // Add it to the array
                 self.readings.append(newReading)
             }
-            
-            
         }
-        
     }
     
     @IBAction func stopEvaluatingShotButtonPressed() {

@@ -27,10 +27,13 @@ class InterfaceController: WKInterfaceController {
         // Configure interface objects here.
         startTrackingButton.setTitle("Start")
         stopTrackingButton.setTitle("Stop")
-        nextScreenButton.setTitle("Next Screen")
+        nextScreenButton.setTitle("Practice Shots")
+        
+        initialState()
     }
     
     override func willActivate() {
+        initialState()
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
@@ -57,6 +60,9 @@ class InterfaceController: WKInterfaceController {
     
     // Actions
     @IBAction func startTrackingButtonPressed() {
+        
+        accelReadings = [] // Reset list
+        recordingShotsState() // Make sure the UI elements are reset
         
         if motionManager.isAccelerometerAvailable == true {
             motionManager.accelerometerUpdateInterval = 0.2
@@ -147,7 +153,30 @@ class InterfaceController: WKInterfaceController {
             InterfaceController.prefAccelReading.negy = minY
             InterfaceController.prefAccelReading.negz = minZ
             
-            print(InterfaceController.prefAccelReading)
+            // Update UI Elements
+            nextScreenState()
         }
+    }
+    
+    // Functions to set UI
+    func initialState() {
+        startTrackingButton.setTitle("Start")
+        startTrackingButton.setHidden(false)
+        stopTrackingButton.setHidden(true)
+        nextScreenButton.setHidden(true)
+    }
+    
+    func recordingShotsState() {
+        startTrackingButton.setHidden(true)
+        stopTrackingButton.setHidden(false)
+        nextScreenButton.setHidden(true)
+    }
+    
+    // The user has recorded data, now they can
+    func nextScreenState() {
+        startTrackingButton.setTitle("Try Again")
+        startTrackingButton.setHidden(false)
+        stopTrackingButton.setHidden(true)
+        nextScreenButton.setHidden(false)
     }
 }
