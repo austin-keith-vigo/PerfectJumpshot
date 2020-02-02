@@ -14,6 +14,9 @@ struct AccelerometerReading {
     var posx: Double
     var posy: Double
     var posz: Double
+    var negx: Double
+    var negy: Double
+    var negz: Double
 }
 
 class InterfaceController: WKInterfaceController {
@@ -36,8 +39,13 @@ class InterfaceController: WKInterfaceController {
     
     // Class Variables
     let motionManager = CMMotionManager()
-    var prefAccelReading = AccelerometerReading(posx: 0.0, posy: 0.0, posz: 0.0)
     var accelReadings: [AccelerometerReading] = []
+    var prefAccelReading = AccelerometerReading(posx: 0.0,
+                                                posy: 0.0,
+                                                posz: 0.0,
+                                                negx: 0.0,
+                                                negy: 0.0,
+                                                negz: 0.0)
     
     // Outlets
     @IBOutlet weak var startTrackingButton: WKInterfaceButton!
@@ -49,13 +57,42 @@ class InterfaceController: WKInterfaceController {
             motionManager.accelerometerUpdateInterval = 0.2
             motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
                 
-                //Grab the x, y, z values from the data
-                let xVal: Double = data?.acceleration.x ?? 0.0
-                let yVal: Double = data?.acceleration.y ?? 0.0
-                let zVal: Double = data?.acceleration.z ?? 0.0
+                //Create new reading with default values
+                var newReading = AccelerometerReading(posx: 0.0,
+                                                      posy: 0.0,
+                                                      posz: 0.0,
+                                                      negx: 0.0,
+                                                      negy: 0.0,
+                                                      negz: 0.0)
                 
-                //Create new reading and add to the list
-                let newReading = AccelerometerReading(posx: xVal, posy: yVal, posz: zVal)
+                //Grab the x, y, z values from the data
+                let xReading: Double = data?.acceleration.x ?? 0.0
+                let yReading: Double = data?.acceleration.y ?? 0.0
+                let zReading: Double = data?.acceleration.z ?? 0.0
+            
+                //Initalize the new reading values according to the data
+                if xReading > 0 {
+                    newReading.posx = xReading
+                }
+                else {
+                    newReading.negx = xReading
+                }
+            
+                if yReading > 0 {
+                    newReading.posy = yReading
+                }
+                else {
+                    newReading.negy = yReading
+                }
+                
+                if xReading > 0 {
+                    newReading.posz = zReading
+                }
+                else {
+                    newReading.negz = zReading
+                }
+                
+                //add to the list
                 self.accelReadings.append(newReading)
             }
         }
@@ -68,10 +105,14 @@ class InterfaceController: WKInterfaceController {
             //Stop tracking jumpshot data
             motionManager.stopAccelerometerUpdates()
             
-            //get the preferred x y z val
+            //get the preferred positive and negative x y z val
             var maxX: Double = 0.0
             var maxY: Double = 0.0
             var maxZ: Double = 0.0
+            var minX: Double = 0.0
+            var minY: Double = 0.0
+            var minZ: Double = 0.0
+            
             for reading in accelReadings {
                 if reading.posx > maxX {
                     maxX = reading.posx
@@ -82,14 +123,24 @@ class InterfaceController: WKInterfaceController {
                 if reading.posz > maxZ {
                     maxZ = reading.posz
                 }
+                if reading.negx < minX {
+                    minX = reading.negx
+                }
+                if reading.negy < minY {
+                    minY = reading.negy
+                }
+                if reading.negz < minZ {
+                    minZ = reading.negz
+                }
             }
             
             //Set the users preffered values
             prefAccelReading.posx = maxX
             prefAccelReading.posy = maxY
             prefAccelReading.posz = maxZ
-            
-            print(prefAccelReading)
+            prefAccelReading.negx = minX
+            prefAccelReading.negy = minY
+            prefAccelReading.negz = minZ
         }
     }
 }
