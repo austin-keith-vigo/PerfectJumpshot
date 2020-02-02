@@ -25,6 +25,9 @@ class InterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         
         // Configure interface objects here.
+        startTrackingButton.setTitle("Start")
+        stopTrackingButton.setTitle("Stop")
+        nextScreenButton.setTitle("Next Screen")
     }
     
     override func willActivate() {
@@ -40,7 +43,7 @@ class InterfaceController: WKInterfaceController {
     // Class Variables
     let motionManager = CMMotionManager()
     var accelReadings: [AccelerometerReading] = []
-    var prefAccelReading = AccelerometerReading(posx: 0.0,
+    static var prefAccelReading = AccelerometerReading(posx: 0.0,
                                                 posy: 0.0,
                                                 posz: 0.0,
                                                 negx: 0.0,
@@ -50,9 +53,11 @@ class InterfaceController: WKInterfaceController {
     // Outlets
     @IBOutlet weak var startTrackingButton: WKInterfaceButton!
     @IBOutlet weak var stopTrackingButton: WKInterfaceButton!
+    @IBOutlet weak var nextScreenButton: WKInterfaceButton!
     
     // Actions
     @IBAction func startTrackingButtonPressed() {
+        
         if motionManager.isAccelerometerAvailable == true {
             motionManager.accelerometerUpdateInterval = 0.2
             motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
@@ -135,12 +140,14 @@ class InterfaceController: WKInterfaceController {
             }
             
             //Set the users preffered values
-            prefAccelReading.posx = maxX
-            prefAccelReading.posy = maxY
-            prefAccelReading.posz = maxZ
-            prefAccelReading.negx = minX
-            prefAccelReading.negy = minY
-            prefAccelReading.negz = minZ
+            InterfaceController.prefAccelReading.posx = maxX
+            InterfaceController.prefAccelReading.posy = maxY
+            InterfaceController.prefAccelReading.posz = maxZ
+            InterfaceController.prefAccelReading.negx = minX
+            InterfaceController.prefAccelReading.negy = minY
+            InterfaceController.prefAccelReading.negz = minZ
+            
+            print(InterfaceController.prefAccelReading)
         }
     }
 }

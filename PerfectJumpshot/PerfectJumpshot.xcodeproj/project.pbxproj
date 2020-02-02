@@ -18,8 +18,8 @@
 		D94B1EBA23E661FC00CA81D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94B1EB923E661FC00CA81D6 /* Assets.xcassets */; };
 		D94B1EC123E661FC00CA81D6 /* PerfectJumpshot WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D94B1EC023E661FC00CA81D6 /* PerfectJumpshot WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D94B1EC623E661FC00CA81D6 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B1EC523E661FC00CA81D6 /* InterfaceController.swift */; };
-		D94B1EC823E661FC00CA81D6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B1EC723E661FC00CA81D6 /* ExtensionDelegate.swift */; };
 		D94B1ECA23E661FD00CA81D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94B1EC923E661FD00CA81D6 /* Assets.xcassets */; };
+		D94B1EE023E6918200CA81D6 /* PracticeShotsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B1EDF23E6918200CA81D6 /* PracticeShotsInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,9 +79,9 @@
 		D94B1EBB23E661FC00CA81D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D94B1EC023E661FC00CA81D6 /* PerfectJumpshot WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PerfectJumpshot WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94B1EC523E661FC00CA81D6 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		D94B1EC723E661FC00CA81D6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		D94B1EC923E661FD00CA81D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D94B1ECB23E661FD00CA81D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94B1EDF23E6918200CA81D6 /* PracticeShotsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeShotsInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,9 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				D94B1EC523E661FC00CA81D6 /* InterfaceController.swift */,
-				D94B1EC723E661FC00CA81D6 /* ExtensionDelegate.swift */,
 				D94B1EC923E661FD00CA81D6 /* Assets.xcassets */,
 				D94B1ECB23E661FD00CA81D6 /* Info.plist */,
+				D94B1EDF23E6918200CA81D6 /* PracticeShotsInterfaceController.swift */,
 			);
 			path = "PerfectJumpshot WatchKit Extension";
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D94B1EC823E661FC00CA81D6 /* ExtensionDelegate.swift in Sources */,
+				D94B1EE023E6918200CA81D6 /* PracticeShotsInterfaceController.swift in Sources */,
 				D94B1EC623E661FC00CA81D6 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

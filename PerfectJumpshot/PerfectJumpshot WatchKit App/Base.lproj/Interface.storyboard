@@ -21,14 +21,46 @@
                                 <action selector="stopTrackingButtonPressed" destination="AgC-eL-Hgc" id="fml-Fi-frX"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="Button" id="eyv-GS-PPe">
+                            <connections>
+                                <segue destination="WbP-Nb-9aJ" kind="push" id="wRV-Qw-uzv"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
+                        <outlet property="nextScreenButton" destination="eyv-GS-PPe" id="zec-Me-F5G"/>
                         <outlet property="startTrackingButton" destination="YqT-GD-naU" id="25K-8C-6hO"/>
                         <outlet property="stopTrackingButton" destination="7ND-4R-Sif" id="Cdf-K6-Phi"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="93" y="37"/>
+            <point key="canvasLocation" x="-58" y="28"/>
+        </scene>
+        <!--Practice Shots Interface Controller-->
+        <scene sceneID="UUF-7T-Bjn">
+            <objects>
+                <controller id="WbP-Nb-9aJ" customClass="PracticeShotsInterfaceController" customModule="PerfectJumpshot_WatchKit_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Button" id="XDd-8J-Zqk">
+                            <connections>
+                                <action selector="startEvaluatingShotButtonPressed" destination="WbP-Nb-9aJ" id="0Cz-La-8L2"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Button" id="3Di-wk-hMb">
+                            <connections>
+                                <action selector="stopEvaluatingShotButtonPressed" destination="WbP-Nb-9aJ" id="h3f-Uv-ax1"/>
+                            </connections>
+                        </button>
+                        <label width="135" height="24" alignment="left" text="Label" id="Y8Q-If-jcT"/>
+                    </items>
+                    <connections>
+                        <outlet property="feedbackLabel" destination="Y8Q-If-jcT" id="jbl-oN-Htg"/>
+                        <outlet property="startEvaluatingShotButton" destination="XDd-8J-Zqk" id="a7C-sO-88G"/>
+                        <outlet property="stopEvaluatingShotButton" destination="3Di-wk-hMb" id="cup-lQ-W7h"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="237" y="27"/>
         </scene>
     </scenes>
 </document>
